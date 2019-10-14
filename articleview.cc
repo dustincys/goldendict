@@ -201,6 +201,8 @@ ArticleView::ArticleView( QWidget * parent, ArticleNetworkAccessManager & nm,
   pasteAction( this ),
   articleUpAction( this ),
   articleDownAction( this ),
+  articleMUpAction( this ),
+  articleMDownAction( this ),
   goBackAction( this ),
   goForwardAction( this ),
   selectCurrentArticleAction( this ),
@@ -270,13 +272,22 @@ ArticleView::ArticleView( QWidget * parent, ArticleNetworkAccessManager & nm,
   ui.definition->addAction( &pasteAction );
   connect( &pasteAction, SIGNAL( triggered() ), this, SLOT( pasteTriggered() ) );
 
-  articleUpAction.setShortcut( QKeySequence( "Ctrl+K" ) );
+  articleUpAction.setShortcut( QKeySequence( "Ctrl+H" ) );
   ui.definition->addAction( &articleUpAction );
   connect( &articleUpAction, SIGNAL( triggered() ), this, SLOT( moveOneArticleUp() ) );
 
-  articleDownAction.setShortcut( QKeySequence( "Ctrl+J" ) );
+  articleDownAction.setShortcut( QKeySequence( "Ctrl+L" ) );
   ui.definition->addAction( &articleDownAction );
   connect( &articleDownAction, SIGNAL( triggered() ), this, SLOT( moveOneArticleDown() ) );
+
+  articleMUpAction.setShortcut( QKeySequence( "Ctrl+K" ) );
+  ui.definition->addAction( &articleMUpAction );
+  connect( &articleMUpAction, SIGNAL( triggered() ), this, SLOT( scrollArticleUp() ) );
+
+  articleMDownAction.setShortcut( QKeySequence( "Ctrl+J" ) );
+  ui.definition->addAction( &articleMDownAction );
+  connect( &articleMDownAction, SIGNAL( triggered() ), this, SLOT( scrollArticleDown() ) );
+
 
   ui.definition->addAction( &openSearchAction );
   connect( &openSearchAction, SIGNAL( triggered() ), this, SLOT( openSearch() ) );
@@ -692,6 +703,24 @@ void ArticleView::jumpToDictionary( QString const & id, bool force )
     setCurrentArticle( targetArticle, true );
   }
 }
+
+
+void ArticleView::scrollArticleDown()
+{
+  if ( !ui.definition->isVisible() )
+    return; // No action on background page, scrollIntoView there don't work
+
+  ui.definition->page()->mainFrame()->evaluateJavaScript( QString( "window.scrollBy(0, 50);" ));
+}
+
+void ArticleView::scrollArticleUp()
+{
+  if ( !ui.definition->isVisible() )
+    return; // No action on background page, scrollIntoView there don't work
+
+  ui.definition->page()->mainFrame()->evaluateJavaScript( QString( "window.scrollBy(0, -50);" ));
+}
+
 
 void ArticleView::setCurrentArticle( QString const & id, bool moveToIt )
 {

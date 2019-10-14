@@ -33,6 +33,7 @@ class ArticleView: public QFrame
   Ui::ArticleView ui;
 
   QAction pasteAction, articleUpAction, articleDownAction,
+          articleMUpAction, articleMDownAction,
           goBackAction, goForwardAction, selectCurrentArticleAction,
           copyAsTextAction, inspectAction;
   QAction & openSearchAction;
@@ -273,6 +274,9 @@ private slots:
   /// Nagivates to the next article relative to the active one.
   void moveOneArticleDown();
 
+  void scrollArticleUp();
+  void scrollArticleDown();
+
   /// Opens the search area
   void openSearch();
 
@@ -310,6 +314,7 @@ private:
   /// Sets the current article by executing a javascript code.
   /// If moveToIt is true, it moves the focus to it as well.
   void setCurrentArticle( QString const &, bool moveToIt = false );
+
 
   /// Checks if the given article in form of "gdfrom-xxx" is inside a "website"
   /// frame.

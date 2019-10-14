@@ -233,7 +233,7 @@ ScanPopup::ScanPopup( QWidget * parent,
   addAction( &focusTranslateLineAction );
   focusTranslateLineAction.setShortcuts( QList< QKeySequence >() <<
                                          QKeySequence( "Alt+D" ) <<
-                                         QKeySequence( "Ctrl+L" ) );
+                                         QKeySequence( "Ctrl+I" ) );
 
   connect( &focusTranslateLineAction, SIGNAL( triggered() ),
            this, SLOT( focusTranslateLine() ) );
