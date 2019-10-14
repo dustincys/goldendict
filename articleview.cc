@@ -326,11 +326,11 @@ ArticleView::ArticleView( QWidget * parent, ArticleNetworkAccessManager & nm,
   ui.definition->addAction( &pasteAction );
   connect( &pasteAction, SIGNAL( triggered() ), this, SLOT( pasteTriggered() ) );
 
-  articleUpAction.setShortcut( QKeySequence( "Alt+Up" ) );
+  articleUpAction.setShortcut( QKeySequence( "Ctrl+K" ) );
   ui.definition->addAction( &articleUpAction );
   connect( &articleUpAction, SIGNAL( triggered() ), this, SLOT( moveOneArticleUp() ) );
 
-  articleDownAction.setShortcut( QKeySequence( "Alt+Down" ) );
+  articleDownAction.setShortcut( QKeySequence( "Ctrl+J" ) );
   ui.definition->addAction( &articleDownAction );
   connect( &articleDownAction, SIGNAL( triggered() ), this, SLOT( moveOneArticleDown() ) );
 
