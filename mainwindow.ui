@@ -551,9 +551,9 @@
    <property name="text">
     <string>&amp;Show</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+H</string>
-   </property>
+   <!-- <property name="shortcut"> -->
+   <!--  <string>Ctrl+H</string> -->
+   <!-- </property> -->
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
    </property>
@@ -637,9 +637,9 @@
    <property name="text">
     <string>Show</string>
    </property>
-   <property name="shortcut">
-    <string notr="true">Ctrl+I</string>
-   </property>
+   <!-- <property name="shortcut"> -->
+   <!--  <string notr="true">Ctrl+I</string> -->
+   <!-- </property> -->
   </action>
   <action name="exportFavorites">
    <property name="text">

@@ -36,6 +36,7 @@ class ArticleView: public QFrame
   ArticleViewJsProxy * const jsProxy;
 
   QAction pasteAction, articleUpAction, articleDownAction,
+          articleMUpAction, articleMDownAction,
           goBackAction, goForwardAction, selectCurrentArticleAction,
           copyAsTextAction, inspectAction;
   QAction & openSearchAction;
@@ -288,6 +289,9 @@ private slots:
   /// Nagivates to the next article relative to the active one.
   void moveOneArticleDown();
 
+  void scrollArticleUp();
+  void scrollArticleDown();
+
   /// Opens the search area
   void openSearch();
 
@@ -326,6 +330,7 @@ private:
   /// If moveToIt is true, it moves the focus to it as well.
   /// Returns true in case of success, false otherwise.
   bool setCurrentArticle( QString const &, bool moveToIt = false );
+
 
   /// Checks if the given article in form of "gdfrom-xxx" is inside a "website"
   /// frame.

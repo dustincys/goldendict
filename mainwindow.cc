@@ -393,11 +393,11 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
 
   addGlobalAction( &escAction, SLOT( handleEsc() ) );
   escAction.setShortcut( QKeySequence( "Esc" ) );
-
   addGlobalAction( &focusTranslateLineAction, SLOT( focusTranslateLine() ) );
+
   focusTranslateLineAction.setShortcuts( QList< QKeySequence >() <<
                                          QKeySequence( "Alt+D" ) <<
-                                         QKeySequence( "Ctrl+L" ) );
+                                         QKeySequence( "Ctrl+I" ) );
 
   addGlobalAction( &focusHeadwordsDlgAction, SLOT( focusHeadwordsDialog() ) );
   focusHeadwordsDlgAction.setShortcut( QKeySequence( "Ctrl+D" ) );
@@ -520,10 +520,12 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   ui.searchPane->toggleViewAction()->setShortcut( QKeySequence( "Ctrl+S" ) );
   ui.menuView->addAction( ui.dictsPane->toggleViewAction() );
   ui.dictsPane->toggleViewAction()->setShortcut( QKeySequence( "Ctrl+R" ) );
-  ui.menuView->addAction( ui.favoritesPane->toggleViewAction() );
-  ui.favoritesPane->toggleViewAction()->setShortcut( QKeySequence( "Ctrl+I" ) );
-  ui.menuView->addAction( ui.historyPane->toggleViewAction() );
-  ui.historyPane->toggleViewAction()->setShortcut( QKeySequence( "Ctrl+H" ) );
+
+  // ui.menuView->addAction( ui.favoritesPane->toggleViewAction() );
+  // ui.favoritesPane->toggleViewAction()->setShortcut( QKeySequence( "Ctrl+I" ) );
+  // ui.menuView->addAction( ui.historyPane->toggleViewAction() );
+  // ui.historyPane->toggleViewAction()->setShortcut( QKeySequence( "Ctrl+H" ) );
+
   ui.menuView->addSeparator();
   ui.menuView->addAction( dictionaryBar.toggleViewAction() );
   ui.menuView->addAction( navToolbar->toggleViewAction() );
@@ -2541,24 +2543,24 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
   if ( ev->type() == QEvent::ShortcutOverride
        || ev->type() == QEvent::KeyPress )
   {
-    // Handle Ctrl+H to show the History Pane.
     QKeyEvent * ke = static_cast<QKeyEvent*>( ev );
-    if ( ke->key() == Qt::Key_H && ke->modifiers() == Qt::ControlModifier )
-    {
-      if( ev->type() == QEvent::KeyPress )
-        on_showHideHistory_triggered();
-      ev->accept();
-      return true;
-    }
+    // Handle Ctrl+H to show the History Pane.
+    // if ( ke->key() == Qt::Key_H && ke->modifiers() == Qt::ControlModifier )
+    // {
+    //   if( ev->type() == QEvent::KeyPress )
+    //     on_showHideHistory_triggered();
+    //   ev->accept();
+    //   return true;
+    // }
 
     // Handle Ctrl+I to show the Favorities Pane.
-    if ( ke->key() == Qt::Key_I && ke->modifiers() == Qt::ControlModifier )
-    {
-      if( ev->type() == QEvent::KeyPress )
-        on_showHideFavorites_triggered();
-      ev->accept();
-      return true;
-    }
+    // if ( ke->key() == Qt::Key_I && ke->modifiers() == Qt::ControlModifier )
+    // {
+    //   if( ev->type() == QEvent::KeyPress )
+    //     on_showHideFavorites_triggered();
+    //   ev->accept();
+    //   return true;
+    // }
 
     // Handle F3/Shift+F3 shortcuts
     if ( ke->key() == Qt::Key_F3 )
